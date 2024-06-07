@@ -1,0 +1,18 @@
+{
+    "sourceFile": "Jenkinsfile",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1717750499053,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1717750499053,
+            "name": "Commit-0",
+            "content": "pipeline {\r\nagent any\r\nstages {\r\nstage('Build') {\r\nsteps {\r\nsh 'mvn -B -DskipTests clean package'\r\n}\r\n}\r\n}\r\n}"
+        }
+    ]
+}
