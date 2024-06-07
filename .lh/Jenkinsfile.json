@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 7,
             "patches": [
                 {
                     "date": 1717750499053,
@@ -16,6 +16,26 @@
                 {
                     "date": 1717751076944,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,5 +9,12 @@\n stage('Test') {\r\n steps {\r\n sh 'mvn test'\r\n }\r\n+post {\r\n+always {\r\n+junit 'target/surefire-reports/*.xml'\r\n+}\r\n+}\r\n+}\r\n+}\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1717751999621,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,6 +15,8 @@\n junit 'target/surefire-reports/*.xml'\r\n }\r\n }\r\n }\r\n+stage('Deliver') {\r\n+steps {\r\n }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1717752011051,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,6 +17,9 @@\n }\r\n }\r\n stage('Deliver') {\r\n steps {\r\n+    sh './jenkins/scripts/deliver.sh'\r\n }\r\n+}\r\n+}\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1717752190054,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,28 @@\n+pipeline {\r\n+agent any\r\n+stages {\r\n+stage('Build') {\r\n+steps {\r\n+sh 'mvn -B -DskipTests clean package'\r\n+}\r\n+}\r\n+stage('Test') {\r\n+steps {\r\n+sh 'mvn test'\r\n+}\r\n+post {\r\n+always {\r\n+junit 'target/surefire-reports/*.xml'\r\n+}\r\n+}\r\n+}\r\n+stage('Deliver') {\r\n+steps {\r\n+    sh './jenkins/scripts/deliver.sh'\r\n+}\r\n+}\r\n+}\r\n+options {\r\n+    \r\n+}\r\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1717752402752,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,29 @@\n+pipeline {\r\n+agent any\r\n+stages {\r\n+stage('Build') {\r\n+steps {\r\n+sh 'mvn -B -DskipTests clean package'\r\n+}\r\n+}\r\n+stage('Test') {\r\n+steps {\r\n+sh 'mvn test'\r\n+}\r\n+post {\r\n+always {\r\n+junit 'target/surefire-reports/*.xml'\r\n+}\r\n+}\r\n+}\r\n+stage('Deliver') {\r\n+steps {\r\n+    sh './jenkins/scripts/deliver.sh'\r\n+}\r\n+}\r\n+}\r\n+options {\r\n+    skipStagesAfterUnstable()\r\n+    \r\n+}\r\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1717752513823,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,34 @@\n+pipeline {\r\n+agent any\r\n+stages {\r\n+stage('Build') {\r\n+steps {\r\n+sh 'mvn -B -DskipTests clean package'\r\n+}\r\n+}\r\n+stage('Test') {\r\n+steps {\r\n+sh 'mvn test'\r\n+}\r\n+post {\r\n+always {\r\n+junit 'target/surefire-reports/*.xml'\r\n+}\r\n+}\r\n+}\r\n+stage('Deliver') {\r\n+steps {\r\n+    sh './jenkins/scripts/deliver.sh'\r\n+}\r\n+}\r\n+stage('Deliver') {\r\n+    steps {\r\n+        sh './jenkins/scripts/deliver.sh'\r\n+    }\r\n+}\r\n+}\r\n+options {\r\n+    skipStagesAfterUnstable()\r\n+    \r\n+}\r\n+}\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1717750499053,
