@@ -3,11 +3,19 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 2,
             "patches": [
                 {
                     "date": 1717750499053,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1717751051997,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,6 +5,9 @@\n steps {\r\n sh 'mvn -B -DskipTests clean package'\r\n }\r\n }\r\n+stage('Test') {\r\n+steps {\r\n+sh 'mvn test'\r\n }\r\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1717751076944,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,5 +9,12 @@\n stage('Test') {\r\n steps {\r\n sh 'mvn test'\r\n }\r\n+post {\r\n+always {\r\n+junit 'target/surefire-reports/*.xml'\r\n+}\r\n+}\r\n+}\r\n+}\r\n }\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1717750499053,
